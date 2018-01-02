@@ -1,0 +1,24 @@
+{
+  "name": "j5ik-pthaden",
+  "version": "0.0.0",
+  "description": "Tessel project",
+  "main": "index.js",
+  "dependencies": {
+    "barcli": "0.0.25",
+    "express": "^4.16.2",
+    "johnny-five": "^0.11.7",
+    "justgage": "^1.2.2",
+    "socket.io": "^1.4.8",
+    "tessel-io": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "www.github.com/tessel/t2-cli",
+  "keywords": [
+    "Tessel"
+  ],
+  "license": "MIT",
+  "readme": "A bare bones Tessel 2 blinky script."
+}
