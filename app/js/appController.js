@@ -9,21 +9,64 @@ define(['ojs/ojcore', 'knockout', 'socketio', 'ojs/ojknockout', 'ojs/ojgauge'],
   function(oj, ko, io) {
      function ControllerViewModel() {
       var self = this;
-      var socket = io.connect('http://192.168.1.173:3000/');
+      var socket = io.connect();
+      
       self.thermometer = ko.observable(30);
       self.barometer = ko.observable(40);
       self.hygrometer = ko.observable(50);
       self.altimeter = ko.observable(60);
-      self.thresholds = {
-        thermometerMin: 0,
-        thermometerMax: 100,
-        barometerMin: 50,
-        barometerMax: 150,
-        altimeterMin: 0,
-        altimeterMax: 100,
-        hygrometerMin: 0,
-        hygrometerMax: 100
-      }
+      
+
+      self.thermometerScale = {
+          min: -20,
+          max: 120,
+          thresholds: [
+            {max: 0, color: "deeppink"},
+            {max: 10, color: "magenta"},
+            {max: 20, color: "purple"}, 
+            {max: 30, color: "blue"},
+            {max: 40, color: "skyblue"},
+            {max: 50, color: "green"}, 
+            {max: 60, color: "yellowgreen"},
+            {max: 70, color: "yellow"},
+            {max: 80, color: "orange"},
+            {max: 90, color: "red"},
+            {max: 100, color: "firebrick"},
+            {max: 120, color: "maroon"}
+          ]
+        };
+        
+      self.barometerScale = {
+          min: 93.1,
+          max: 106.7,
+          thresholds: [
+          
+            {max: 96.0, color: "dimgray", shortDesc: "stormy"},
+            {max: 98.2, color: "darkblue", shortDesc: "rain"},
+            {max: 101.2, color: "lightskyblue", shortDesc: "change"}, 
+            {max: 104.0, color: "deepskyblue", shortDesc: "fair"},
+            {max: 106.7, color: "goldenrod", shortDesc: "very dry"}
+          ]
+        };
+        
+      self.hygrometerScale = {
+          min: 0,
+          max: 100,
+          thresholds: [
+          
+            {max: 40, color: "khaki ", shortDesc: "dry"},
+            {max: 60, color: "darkseagreen", shortDesc: "comfort"},
+            {max: 100, color: "aqua", shortDesc: "wet"}          
+          ]
+        };
+
+      self.altimeterScale = {
+          min: 0,
+          max: 5000
+        };
+
+
+      
 
       socket.on('connect', function() {
             console.log("I am connected");
